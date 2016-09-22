@@ -42,13 +42,14 @@ class FGMembersite
         $this->rand_key = '0iQx5oBk66oVZep';
     }
     
-    function InitDB($host,$uname,$pwd,$database,$tablename)
+    function InitDB($host,$uname,$pwd,$database,$tablename,$invitationstable)
     {
         $this->db_host  = $host;
         $this->username = $uname;
         $this->pwd  = $pwd;
         $this->database  = $database;
         $this->tablename = $tablename;
+        $this->invitationstable = $invitationstable;
         
     }
     function SetAdminEmail($email)
@@ -460,6 +461,20 @@ class FGMembersite
         return true;
     }
     
+    function AcceptInvitationInDB($invitation)
+        {
+            $invitationcode = $this->SanitizeForSQL($invitation);
+            
+            $qry = "Update $this->invitationstable Set accepted=1 Where code='".$invitationcode."'";
+            
+            if(!mysql_query( $qry ,$this->connection))
+            {
+                $this->HandleDBError("Error marking invitation as accepted \nquery:$qry");
+                return false;
+            }     
+            return true;
+        }
+
     function GetUserFromEmail($email,&$user_rec)
     {
         if(!$this->DBLogin())
@@ -645,6 +660,7 @@ class FGMembersite
 	$formvars['username'] = $this->Sanitize($_POST['username']);
         $formvars['email'] = $this->Sanitize($_POST['email']);
         $formvars['password'] = $this->Sanitize($_POST['password']);
+        $formvars['invitation'] = $this->Sanitize($_POST['invitation']);
    
     }
     
@@ -735,6 +751,11 @@ class FGMembersite
         {
             return false;
         }
+        if(!$this->IsInvitationCodeValid($formvars))
+        {
+            $this->HandleError("This invitation code is invalid");
+            return false;
+        }
         if(!$this->IsFieldUnique($formvars,'email'))
         {
             $this->HandleError("This email is already registered");
@@ -752,6 +773,15 @@ class FGMembersite
             $this->HandleError("Inserting to Database failed!");
             return false;
         }
+
+        if($formvars['invitation'])
+        {
+            if(!$this->AcceptInvitationInDB($formvars['invitation']))
+            {
+                $this->HandleError("Accepting invitation failed!");
+                return false;
+            }
+        }
         return true;
     }
     
@@ -765,6 +795,18 @@ class FGMembersite
             return false;
         }
         return true;
+    }
+
+    function IsInvitationCodeValid($formvars)
+    {
+        $field_val = $this->SanitizeForSQL($formvars['invitation']);
+        $qry = "select invitee from $this->invitationstable where code='".$field_val."' and accepted=0";
+        $result = mysql_query($qry,$this->connection);   
+        if($result && mysql_num_rows($result) > 0)
+        {
+            return true;
+        }
+        return false;
     }
     
     function DBLogin()
@@ -803,7 +845,7 @@ class FGMembersite
     function CreateTable()
     {
        
-    	$qry = "Create Table $this->tablename (".
+    	$qry = "Create Table IF NOT EXISTS $this->tablename (".
                 "id_user INT NOT NULL AUTO_INCREMENT ,".
                 "name VARCHAR( 128 ) NOT NULL ,".
                 "email VARCHAR( 64 ) NOT NULL ,".
@@ -821,6 +863,22 @@ class FGMembersite
             $this->HandleDBError("Error creating the table \nquery was\n $qry");
             return false;
         }
+
+        $qry = "Create Table IF NOT EXISTS $this->invitationstable (".
+                "id_invitation INT NOT NULL AUTO_INCREMENT ,".
+                "invitor INT NOT NULL ,".
+                "invitee VARCHAR( 64 ) NOT NULL ,".
+                "code VARCHAR( 32 ) NOT NULL ,".
+                "accepted TINYINT( 1 ) NOT NULL DEFAULT 0,".
+                "PRIMARY KEY ( id_invitation )".
+                ")";
+
+        if(!mysql_query($qry,$this->connection))
+        {
+            $this->HandleDBError("Error creating the table \nquery was\n $qry");
+            return false;
+        }
+
         return true;
     }
     

@@ -35,6 +35,11 @@ if(isset($_POST['submitted']))
 
 <div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
 <div class='container'>
+    <label for='invitation' >Invitation Code*: </label><br/>
+    <input type='text' name='invitation' id='invitation' value='<?php echo $fgmembersite->SafeDisplay('invitation') ?>' maxlength="50" /><br/>
+    <span id='register_invitation_errorloc' class='error'></span>
+</div>
+<div class='container'>
     <label for='name' >Your Full Name*: </label><br/>
     <input type='text' name='name' id='name' value='<?php echo $fgmembersite->SafeDisplay('name') ?>' maxlength="50" /><br/>
     <span id='register_name_errorloc' class='error'></span>
