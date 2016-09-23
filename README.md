@@ -1,4 +1,4 @@
-# Simple Registration/Login code in PHP
+# Simple Registration/Login code in PHP with Invitations
 
 Read more:[PHP registration form](http://www.html-form-guide.com/php-form/php-registration-form.html) [PHP login form](http://www.html-form-guide.com/php-form/php-login-form.html)
 
@@ -27,6 +27,10 @@ the user clicks the confirmation link that they received in the email
 * login.php
 
     The user can login through this login page. After successful login, the user is sent to the page login-home.php
+
+* invitations.php
+
+    Displays invitations sent by the current user, and allows the user to send invitations.
     
 * access-controlled.php
 
