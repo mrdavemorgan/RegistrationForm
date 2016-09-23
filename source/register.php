@@ -5,7 +5,8 @@ if(isset($_POST['submitted']))
 {
    if($fgmembersite->RegisterUser())
    {
-        $fgmembersite->RedirectToURL("thank-you.html");
+        $fgmembersite->RedirectToURL("index.php?action=message&message=register-success");
+        exit;
    }
 }
 

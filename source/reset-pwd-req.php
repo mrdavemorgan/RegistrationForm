@@ -6,7 +6,7 @@ if(isset($_POST['submitted']))
 {
    if($fgmembersite->EmailResetPasswordLink())
    {
-        $fgmembersite->RedirectToURL("reset-pwd-link-sent.html");
+        $fgmembersite->RedirectToURL("index.php?action=message&message=reset-pwd-req-success");
         exit;
    }
 }

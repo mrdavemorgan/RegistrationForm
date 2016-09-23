@@ -12,6 +12,15 @@ if($_GET['action'] == 'logout'){
 			case 'change-pwd-success':
 				$displayMessage = "Your password was changed successfully.";
 				break;
+			case 'register-success':
+				$displayMessage = "Registration saved successfully. A confirmation code will be sent to your email address to complete the registration process.";
+				break;
+			case 'confirmreg-success':
+				$displayMessage = "Registration confirmed and completed. You may now log into your account.";
+				break;
+			case 'reset-pwd-req-success':
+				$displayMessage = "An email is sent to your email address that contains the link to reset the password.";
+				break;
 		}
 	}
 	
