@@ -4,6 +4,14 @@ if($_GET['action'] == 'logout'){
 	$fgmembersite->LogOut();
 	$isAuthenticated = false;
 	$displayMessage = 'You have been logged out.';
+} else if($_GET['action'] == 'resetpwd'){
+	$isAuthenticated = false;
+	if($fgmembersite->ResetPassword()){
+		$displayMessage = 'Your new password is sent to your email address.';
+	} else {
+		$displayMessage = "Error: " .
+			$fgmembersite->GetErrorMessage();
+	}
 } else {
 	$isAuthenticated = $fgmembersite->CheckLogin();
 	$displayMessage = null;

@@ -655,7 +655,7 @@ class FGMembersite
         $mailer->From = $this->GetFromAddress();
         
         $link = $this->GetAbsoluteURLFolder().
-                '/resetpwd.php?email='.
+                '/index.php?action=resetpwd&email='.
                 urlencode($email).'&code='.
                 urlencode($this->GetResetPasswordCode($email));
 
