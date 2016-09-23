@@ -3,6 +3,30 @@ Registration/Login Form by html-form-guide.com
 You can customize all the aspects of the form in this style sheet
 */
 
+div .invitations
+{
+   width: 400px;
+   padding:20px;
+   border:1px solid #ccc;
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+-khtml-border-radius: 10px;
+border-radius: 10px;
+margin-bottom: 10px;
+}
+
+div .invitation
+{
+   border:1px solid #ccc;
+   padding: 6px;
+}
+
+div .invitee
+{
+   width: 310px;
+   display: inline-block;
+}
+
 #fg_membersite fieldset
 {
    width: 230px;

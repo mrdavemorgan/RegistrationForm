@@ -24,4 +24,7 @@ $fgmembersite->InitDB(/*hostname*/'localhost',
 // and put it here
 $fgmembersite->SetRandomKey('qSRcVS6DrTzrPvr');
 
+// Sets the maximum number of invitations that can be sent overall and per-user.
+$fgmembersite->SetMaxInvitations(100, 3);
+
 ?>
