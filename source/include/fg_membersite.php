@@ -582,7 +582,7 @@ class FGMembersite
     }
     
     function SendUserWelcomeEmail(&$user_rec)
-    {
+    {   // customize here
         $mailer = new PHPMailer();
         
         $mailer->CharSet = 'utf-8';
@@ -591,7 +591,8 @@ class FGMembersite
         
         $mailer->Subject = "Welcome to ".$this->sitename;
 
-        $mailer->From = $this->GetFromAddress();        
+        $mailer->From = $this->GetFromAddress();    
+        $mailer->FromName = $this->sitename;
         
         $mailer->Body ="Hello ".$user_rec['name']."\r\n\r\n".
         "Welcome! Your registration  with ".$this->sitename." is completed.\r\n".
@@ -609,7 +610,7 @@ class FGMembersite
     }
     
     function SendAdminIntimationOnRegComplete(&$user_rec)
-    {
+    {   // customize here
         if(empty($this->admin_email))
         {
             return false;
@@ -623,6 +624,7 @@ class FGMembersite
         $mailer->Subject = "Registration Completed: ".$user_rec['name'];
 
         $mailer->From = $this->GetFromAddress();         
+        $mailer->FromName = $this->sitename;
         
         $mailer->Body ="A new user registered at ".$this->sitename."\r\n".
         "Name: ".$user_rec['name']."\r\n".
@@ -641,7 +643,7 @@ class FGMembersite
     }
     
     function SendResetPasswordLink($user_rec)
-    {
+    {   // customize here
         $email = $user_rec['email'];
         
         $mailer = new PHPMailer();
@@ -653,6 +655,7 @@ class FGMembersite
         $mailer->Subject = "Your reset password request at ".$this->sitename;
 
         $mailer->From = $this->GetFromAddress();
+        $mailer->FromName = $this->sitename;
         
         $link = $this->GetAbsoluteURLFolder().
                 '/index.php?action=resetpwd&email='.
@@ -674,7 +677,7 @@ class FGMembersite
     }
     
     function SendNewPassword($user_rec, $new_password)
-    {
+    {   // customize here
         $email = $user_rec['email'];
         
         $mailer = new PHPMailer();
@@ -686,6 +689,7 @@ class FGMembersite
         $mailer->Subject = "Your new password for ".$this->sitename;
 
         $mailer->From = $this->GetFromAddress();
+        $mailer->FromName = $this->sitename;
         
         $mailer->Body ="Hello ".$user_rec['name']."\r\n\r\n".
         "Your password is reset successfully. ".
@@ -808,7 +812,7 @@ class FGMembersite
     }
     
     function SendUserConfirmationEmail(&$formvars)
-    {
+    {   // customize here
         $mailer = new PHPMailer();
         
         $mailer->CharSet = 'utf-8';
@@ -817,7 +821,8 @@ class FGMembersite
         
         $mailer->Subject = "Your registration with ".$this->sitename;
 
-        $mailer->From = $this->GetFromAddress();        
+        $mailer->From = $this->GetFromAddress();    
+        $mailer->FromName = $this->sitename;    
         
         $confirmcode = $formvars['confirmcode'];
         
@@ -856,7 +861,7 @@ class FGMembersite
     }
     
     function SendAdminIntimationEmail(&$formvars)
-    {
+    {   // customize here
         if(empty($this->admin_email))
         {
             return false;
@@ -869,7 +874,8 @@ class FGMembersite
         
         $mailer->Subject = "New registration: ".$formvars['name'];
 
-        $mailer->From = $this->GetFromAddress();         
+        $mailer->From = $this->GetFromAddress();   
+        $mailer->FromName = $this->sitename;      
         
         $mailer->Body ="A new user registered at ".$this->sitename."\r\n".
         "Name: ".$formvars['name']."\r\n".
@@ -884,7 +890,7 @@ class FGMembersite
     }
 
     function SendInvitationEmail(&$formvars, $code)
-    {
+    {   // customize here
         $mailer = new PHPMailer();
         
         $mailer->CharSet = 'utf-8';
@@ -893,7 +899,8 @@ class FGMembersite
         
         $mailer->Subject = "You're invited to try ".$this->sitename;
 
-        $mailer->From = $this->GetFromAddress();        
+        $mailer->From = $this->GetFromAddress();       
+        $mailer->FromName = $this->sitename; 
         
         $confirm_url = $this->GetAbsoluteURLFolder().'/register.php?invitation='.urlencode($formvars['code']);
         
