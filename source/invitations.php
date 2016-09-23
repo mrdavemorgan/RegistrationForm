@@ -63,7 +63,7 @@ else if(isset($_POST['submitted']))
 <?php } ?>
 
 <p>
-<a href='login-home.php'>Home</a>
+<a href='index.php'>Home</a>
 </p>
 </div>
 </body>
