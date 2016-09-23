@@ -7,6 +7,14 @@ if($_GET['action'] == 'logout'){
 } else {
 	$isAuthenticated = $fgmembersite->CheckLogin();
 	$displayMessage = null;
+	if($_GET['action'] == 'message'){
+		switch($_GET['message']){
+			case 'change-pwd-success':
+				$displayMessage = "Your password was changed successfully.";
+				break;
+		}
+	}
+	
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
