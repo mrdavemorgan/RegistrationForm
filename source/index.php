@@ -1,6 +1,13 @@
 <?PHP
 require_once("./include/membersite_config.php");
-$isAuthenticated = $fgmembersite->CheckLogin();
+if($_GET['action'] == 'logout'){
+	$fgmembersite->LogOut();
+	$isAuthenticated = false;
+	$displayMessage = 'You have been logged out.';
+} else {
+	$isAuthenticated = $fgmembersite->CheckLogin();
+	$displayMessage = null;
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
@@ -11,13 +18,17 @@ $isAuthenticated = $fgmembersite->CheckLogin();
 </head>
 <body>
 <div id='fg_membersite_content'>
-<?PHP if($isAuthenticated) { ?>
+<?PHP if($displayMessage){ ?>
+	<div id="displaymessage">
+		<?PHP echo $displayMessage; ?>
+	</div>
+<?PHP } if($isAuthenticated) { ?>
 	<h2>Home Page</h2>
 	Welcome back <?= $fgmembersite->UserFullName(); ?>!
 	<p><a href='change-pwd.php'>Change password</a></p>
 	<p><a href='invitations.php'>Invitations</a></p>
 	<br><br><br>
-	<p><a href='logout.php'>Logout</a></p>
+	<p><a href='index.php?action=logout'>Logout</a></p>
 <?PHP } else { ?>
 	<h2>Home Page</h2>
 	Unauthenticated
