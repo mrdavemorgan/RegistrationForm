@@ -1,84 +1,82 @@
 <?PHP
-    require_once("./include/membersite_config.php");
-    if(isset($_POST['submitted']))
-    {
-       if($fgmembersite->RegisterUser())
-       {
-            $fgmembersite->RedirectToURL("index.php?action=message&message=register-success");
-            exit;
-       }
-    }
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
-<head>
-    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
-    <title>Register</title>
-    <link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css" />
-    <script type='text/javascript' src='scripts/gen_validatorv31.js'></script>
-    <link rel="STYLESHEET" type="text/css" href="style/pwdwidget.css" />
-    <script src="scripts/pwdwidget.js" type="text/javascript"></script>      
-</head>
-<body>
-<div id='fg_membersite'>
-    <form id='register' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
-        <fieldset>
-            <legend>Register</legend>
-            <input type='hidden' name='submitted' id='submitted' value='1'/>
-            <div class='short_explanation'>* required fields</div>
-            <input type='text'  class='spmhidip' name='<?php echo $fgmembersite->GetSpamTrapInputName(); ?>' />
-            <div><span class='error'><?php echo $fgmembersite->GetErrorMessage(); ?></span></div>
+require_once("./include/membersite_config.php");
+if(isset($_POST['submitted']))
+{
+   if($fgmembersite->RegisterUser())
+   {
+        $fgmembersite->RedirectToURL("index.php?action=message&message=register-success");
+        exit;
+   }
+}
 
-            <?php if($fgmembersite->max_invitations_total >= 0) { ?>
-            <div class='container'>
-                <label for='invitation' >Invitation Code*: </label><br/>
-                <input type='text' name='invitation' id='invitation' value='<?php echo $fgmembersite->SafeDisplayEx('invitation') ?>' maxlength="50" /><br/>
-                <span id='register_invitation_errorloc' class='error'></span>
-            </div>
-            <?php } ?>
+$title = "Register";
 
-            <div class='container'>
-                <label for='name' >Your Full Name*: </label><br/>
-                <input type='text' name='name' id='name' value='<?php echo $fgmembersite->SafeDisplay('name') ?>' maxlength="50" /><br/>
-                <span id='register_name_errorloc' class='error'></span>
-            </div>
-            <div class='container'>
-                <label for='email' >Email Address*:</label><br/>
-                <input type='text' name='email' id='email' value='<?php echo $fgmembersite->SafeDisplay('email') ?>' maxlength="50" /><br/>
-                <span id='register_email_errorloc' class='error'></span>
-            </div>
-            <div class='container'>
-                <label for='username' >UserName*:</label><br/>
-                <input type='text' name='username' id='username' value='<?php echo $fgmembersite->SafeDisplay('username') ?>' maxlength="50" /><br/>
-                <span id='register_username_errorloc' class='error'></span>
-            </div>
-            <div class='container' style='height:80px;'>
-                <label for='password' >Password*:</label><br/>
-                <div class='pwdwidgetdiv' id='thepwddiv' ></div>
+function generateDocumentContent($title, $fgmembersite){
+$ret = <<<HTML
+	<form id="register" action="{$fgmembersite->GetSelfScript()}" method="post" accept-charset="UTF-8">
+        <input type="hidden" name="submitted" id="submitted" value="1"/>
+        <input type="text" name="{$fgmembersite->GetSpamTrapInputName()}" style="display: none;"/>
+        <h2>{$title}</h2>
+        <p class="fineprint">* required fields</p>
+        <p class="inlineerror">{$fgmembersite->GetErrorMessage()}</p>
+HTML;
+if($fgmembersite->max_invitations_total >= 0) {
+$ret .= <<<HTML
+        <div class="formline">
+                <label for="invitation">Invitation Code *:</label>
+                <input type="text" name="invitation" id="invitation" maxlength="50" value="{$fgmembersite->SafeDisplayEx('invitation')}"/>
+                <span class="inlineerror" id="register_invitation_errorloc"></span>
+        </div>
+HTML;
+}
+$ret .= <<<HTML
+        <div class="formline">
+	        <label for="name">Your Full Name *:</label>
+	        <input type="text" name="name" id="name" maxlength="50" value="{$fgmembersite->SafeDisplay('name')}"/>
+	        <span class="inlineerror" id="register_name_errorloc"></span>
+        </div>
+        <div class="formline">
+                <label for="email">Email Address *:</label>
+                <input type="text" name="email" id="email" maxlength="50" value="{$fgmembersite->SafeDisplay('email')}"/>
+                <span class="inlineerror" id="register_email_errorloc"></span>
+        </div>
+        <div class="formline">
+                <label for="username">User Name *:</label>
+                <input type="text" name="username" id="username" maxlength="50" value="{$fgmembersite->SafeDisplay('username')}"/>
+                <span class="inlineerror" id="login_username_errorloc"></span>
+        </div>
+        <div class="formline" style="height: 80px;">
+                <label for="password">Password *:</label>
+                <div class="pwdwidgetdiv" id="thepwddiv">
+                </div>
                 <noscript>
-                <input type='password' name='password' id='password' maxlength="50" />
-                </noscript>    
-                <div id='register_password_errorloc' class='error' style='clear:both'></div>
-            </div>
-            <div class='container'>
-                <input type='submit' name='Submit' value='Submit' />
-            </div>
-        </fieldset>
-    </form>
-    <script type='text/javascript'>
-    // <![CDATA[
+                        <input type="password" name="password" id="password" maxlength="50"/>
+                </noscript>
+                <span class="inlineerror" id="register_password_errorloc"></span>
+        </div>
+        <div class="formline">
+                <input type="submit" name="Submit" value="Submit"/>
+        </div>
+	</form>
+	<script type="text/javascript">
+        // <![CDATA[
         var pwdwidget = new PasswordWidget('thepwddiv','password');
         pwdwidget.MakePWDWidget();
-        var frmvalidator  = new Validator("register");
+        var frmvalidator  = new Validator('register');
         frmvalidator.EnableOnPageErrorDisplay();
         frmvalidator.EnableMsgsTogether();
-        frmvalidator.addValidation("name","req","Please provide your name");
-        frmvalidator.addValidation("email","req","Please provide your email address");
-        frmvalidator.addValidation("email","email","Please provide a valid email address");
-        frmvalidator.addValidation("username","req","Please provide a username");
-        frmvalidator.addValidation("password","req","Please provide a password");
-    // ]]>
-    </script>
-</div>
-</body>
-</html>
+        frmvalidator.addValidation('name','req','Please provide your name');
+        frmvalidator.addValidation('email','req','Please provide your email address');
+        frmvalidator.addValidation('email','email','Please provide a valid email address');
+        frmvalidator.addValidation('username','req','Please provide a username');
+        frmvalidator.addValidation('password','req','Please provide a password');
+        // ]]>
+	</script>
+HTML;
+
+return $ret;
+}
+
+$content = generateDocumentContent($title, $fgmembersite);
+require('include/pagetemplate.php');
+?>

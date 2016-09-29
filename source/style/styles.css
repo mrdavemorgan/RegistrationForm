@@ -1,0 +1,141 @@
+body {
+	background: yellow;
+	font-family : Arial, sans-serif;
+	color: black;
+	padding: 0;
+	margin: 0;
+}
+
+.displaymessage {
+	background: red;
+	border: 1px solid black;
+	padding: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width: 300px;
+	max-height: 300px;
+	display: block; /* none */
+}
+
+.content {
+	background: white;
+	padding: 10px;
+	margin: 10px;
+}
+
+.fineprint {
+	font-size: 0.4em;
+}
+
+.inlineerror {
+	color: red;
+	clear: left;
+	display: block; /* none */
+}
+
+.formline {
+	background: #F9F9F9;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.pwdwidget {
+	height: 40px;
+}
+
+div .invitation
+{
+   border:1px solid #ccc;
+   padding: 6px;
+}
+
+div .invitee
+{
+   width: 310px;
+   display: inline-block;
+}
+
+div.nav {
+	margin: 0;
+	background: blue;
+	padding: 20px;
+	
+}
+
+a.nav {
+	margin: 10px;
+	padding: 10px;
+	background: white;
+	border: 1px solid black;
+}
+
+a.nav:hover, a.nav:focus {
+	background: yellow;
+}
+
+label {
+   font-family : Arial, sans-serif;
+   font-size:0.8em;
+   font-weight: bold;
+   display: block;
+}
+
+input[type="text"], textarea, input[type="password"] {
+	font-family : Arial, Verdana, sans-serif;
+	font-size: 0.8em;
+	line-height:140%;
+	color : #000; 
+	padding : 3px; 
+	border : 1px solid #999;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+}
+
+input[type="text"], input[type="password"] {
+	height:18px;
+	width:220px;
+}
+
+input[type="submit"] {
+    width: 100px;
+    height: 30px;
+    padding-left: 0;
+}
+
+p {
+	margin: 0;
+	margin-bottom: 10px;
+}
+
+h2 {
+	margin: 0;
+	margin-bottom: 10px;
+	font-size: 1.5em;
+	color: navy;
+}
+
+h3 {
+	margin: 0;
+	margin-bottom: 10px;
+	font-size: 1.2em;
+	color: navy;
+}
+
+a, a:link, a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+a:hover, a:focus {
+	color: navy;
+}
+
+a:active {
+	color: red;
+}
