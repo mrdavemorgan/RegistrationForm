@@ -15,10 +15,9 @@ function generateDocumentContent($title, $fgmembersite){
 $ret = <<<HTML
   <form id="confirm" action="{$fgmembersite->GetSelfScript()}" method="get" accept-charset="UTF-8">
     <h2>{$title}</h2>
-    <p class="fineprint">* required fields</p>
     <p class="inlineerror">{$fgmembersite->GetErrorMessage()}</p>
     <div class="formline">
-      <label for="name">Confirmation Code *:</label>
+      <label for="name">Confirmation Code:</label>
       <input type="text" name="code" id="code" maxlength="50" />
       <span class="inlineerror" id="register_code_errorloc"></span>
     </div>

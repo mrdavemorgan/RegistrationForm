@@ -21,6 +21,10 @@ Based on the original [RegistrationForm](https://github.com/simfatic/Registratio
 
     If you want to edit the email message or make changes to the logic, edit this file. (Look for "customize here" comments.)
     
+* includes/pagetemplate.php
+
+    Edit this file to customize the HTML layout of the site's pages. 
+
 * includes/class.phpmailer.php
 
     This script uses PHPMailer to send emails. See:http://sourceforge.net/projects/phpmailer/ 

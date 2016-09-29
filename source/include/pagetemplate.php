@@ -23,7 +23,7 @@
 </div>
 
 <?php if($displayMessage) { ?>
-<div id="displaymessage" class="displaymessage">
+<div id="displaymessage" class="displaymessage" onclick="this.style.display='none';">
 <?php echo $displayMessage; ?>
 </div>
 <?php } ?>

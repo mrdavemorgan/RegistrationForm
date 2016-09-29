@@ -21,16 +21,15 @@ return <<<HTML
   <form id="changepwd" action="{$fgmembersite->GetSelfScript()}" method="post" accept-charset="UTF-8">
     <h2>{$title}</h2>
     <input type="hidden" name="submitted" id="submitted" value="1"/>
-    <p class="fineprint">* required fields</p>
     <p class="inlineerror">{$fgmembersite->GetErrorMessage()}</p>
     <div class="formline">
-      <label for="oldpwd">Old Password*:</label>
+      <label for="oldpwd">Old Password: *</label>
       <div class="pwdwidgetdiv pwdwidget" id="oldpwddiv"></div>
       <noscript><input type="password" name="oldpwd" id="oldpwd" maxlength="50"/></noscript>
       <span class="inlineerror" id="changepwd_oldpwd_errorloc"></span>
     </div>
     <div class="formline">
-      <label for="newpwd">New Password*:</label>
+      <label for="newpwd">New Password: *</label>
       <div class="pwdwidgetdiv pwdwidget" id="newpwddiv"></div>
       <noscript><input type="password" name="newpwd" id="newpwd" maxlength="50"/></noscript>
       <span class="inlineerror" id="changepwd_newpwd_errorloc"></span>
@@ -38,6 +37,7 @@ return <<<HTML
     <div class="formline">
       <input type="submit" name="Submit" value="Submit"/>
     </div>
+    <p class="fineprint">* required fields</p>
   </form>
   <script type="text/javascript">
   // <![CDATA[

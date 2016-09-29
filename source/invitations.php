@@ -17,11 +17,12 @@ function generateNewInvitationForm($fgmembersite){
 $ret = <<<HTML
   <div class="invitations">
     <form id="invite" action="{$fgmembersite->GetSelfScript()}" method="post" accept-charset="UTF-8">
-      <legend>New invitation:</legend>
       <input type="hidden" name="submitted" id="submitted" value="1"/>
-      <div class="invitation">
+      <div class="formline">
+          <p>New Invitation:</p>
           <input type="text" name="email" id="email" placeholder="E-mail Address" value="{$fgmembersite->SafeDisplay("email")}" maxlength="50" />
           <span id="register_email_errorloc" class="error"></span>
+          <p></p>
           <input type="submit" name="Submit" value="Submit" />
       </div>
     </form>
@@ -37,8 +38,8 @@ function generateDocumentContent($title, $fgmembersite, $invites){
   } else if(isset($_POST['submitted'])){
     $ret .= "<h3>Success: Invitation has been sent.</h3>\n";
   }
-  $ret .= "<div class=\"formline\">\n<legend>Sent invitations: " . count($invites);
-  $ret .= "/{$fgmembersite->max_invitations_user}</legend>\n";
+  $ret .= "<div class=\"formline\">\n<p>Sent Invitations: " . count($invites);
+  $ret .= "/{$fgmembersite->max_invitations_user}</p>\n";
   foreach($invites as $invitation){
     $ret .= "<div class=\"invitation\"><div class=\"invitee\">{$invitation['invitee']}</div>\n";
     if($invitation['accepted']){

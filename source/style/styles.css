@@ -1,14 +1,15 @@
 body {
-	background: yellow;
+	background: black;
 	font-family : Arial, sans-serif;
-	color: black;
+	color: white;
 	padding: 0;
 	margin: 0;
 }
 
 .displaymessage {
-	background: red;
-	border: 1px solid black;
+	background: #CCCCCC;
+	color: black;
+	border: solid 1px #666666;
 	padding: 20px;
 	margin-left: auto;
 	margin-right: auto;
@@ -21,24 +22,39 @@ body {
 	display: block; /* none */
 }
 
-.content {
+.displaymessage:hover, .displaymessage:focus {
 	background: white;
+	cursor: pointer;
+}
+
+.displaymessage:active {
+	background: #a0c6ff;
+	cursor: pointer;
+}
+
+.content {
+	background: #444444;
 	padding: 10px;
 	margin: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	border: solid 1px #666666;
+	max-width: 500px;
 }
 
 .fineprint {
 	font-size: 0.4em;
+	text-align: right;
 }
 
 .inlineerror {
-	color: red;
+	color: #ff4e4e;
 	clear: left;
 	display: block; /* none */
 }
 
 .formline {
-	background: #F9F9F9;
+	border: solid 1px #666666;
 	padding: 10px;
 	margin-bottom: 10px;
 }
@@ -49,7 +65,7 @@ body {
 
 div .invitation
 {
-   border:1px solid #ccc;
+   background: #666666;
    padding: 6px;
 }
 
@@ -61,20 +77,27 @@ div .invitee
 
 div.nav {
 	margin: 0;
-	background: blue;
+	background: #222222;
 	padding: 20px;
-	
+	border-bottom: solid 1px #666666;
 }
 
-a.nav {
+a.nav, a.nav:link, a.nav:visited {
 	margin: 10px;
 	padding: 10px;
-	background: white;
+	background: #666666;
 	border: 1px solid black;
+	color: white;
 }
 
 a.nav:hover, a.nav:focus {
-	background: yellow;
+	background: white;
+	color: black;
+}
+
+a.nav:active {
+	background: white;
+	color: blue;
 }
 
 label {
@@ -82,6 +105,7 @@ label {
    font-size:0.8em;
    font-weight: bold;
    display: block;
+   margin-bottom: 4px;
 }
 
 input[type="text"], textarea, input[type="password"] {
@@ -91,10 +115,10 @@ input[type="text"], textarea, input[type="password"] {
 	color : #000; 
 	padding : 3px; 
 	border : 1px solid #999;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 }
 
 input[type="text"], input[type="password"] {
@@ -117,25 +141,25 @@ h2 {
 	margin: 0;
 	margin-bottom: 10px;
 	font-size: 1.5em;
-	color: navy;
+	color: #a0c6ff;
 }
 
 h3 {
 	margin: 0;
 	margin-bottom: 10px;
 	font-size: 1.2em;
-	color: navy;
+	color: #a0c6ff;
 }
 
 a, a:link, a:visited {
-	color: black;
+	color: white;
 	text-decoration: none;
 }
 
 a:hover, a:focus {
-	color: navy;
+	color: #a0c6ff;
 }
 
 a:active {
-	color: red;
+	color: blue;
 }

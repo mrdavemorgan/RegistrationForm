@@ -16,10 +16,9 @@ return <<<HTML
   <form id="resetreq" action="{$fgmembersite->GetSelfScript()}" method="post" accept-charset="UTF-8">
     <h2>{$title}</h2>
     <input type="hidden" name="submitted" id="submitted" value="1"/>
-    <p class="fineprint">* required fields</p>
     <p class="inlineerror">{$fgmembersite->GetErrorMessage()}</p>
     <div class="formline">
-      <label for="username">Your Email*:</label>
+      <label for="username">Your Email: </label>
       <input type="text" name="email" id="email" maxlength="50" value="{$fgmembersite->SafeDisplay('email')}"/>
       <span class="inlineerror" id="resetreq_email_errorloc"></span>
     </div>

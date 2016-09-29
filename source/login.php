@@ -16,21 +16,21 @@ return <<<HTML
 	<form id="login" action="{$fgmembersite->GetSelfScript()}" method="post" accept-charset="UTF-8">
 		<input type="hidden" name="submitted" id="submitted" value="1"/>
 		<h2>{$title}</h2>
-		<p class="fineprint">* required fields</p>
 		<p class="inlineerror">{$fgmembersite->GetErrorMessage()}</p>
 		<div class="formline">
-			<label for="username">User Name *:</label>
+			<label for="username">User Name: *</label>
 			<input type="text" name="username" id="username" maxlength="50" value="{$fgmembersite->SafeDisplay('username')}"/>
 			<span class="inlineerror" id="login_username_errorloc"></span>
 		</div>
 		<div class="formline">
-			<label for="password">Password *:</label>
+			<label for="password">Password: *</label>
 			<input type="password" name="password" id="password" maxlength="50"/>
 			<span class="inlineerror" id="login_password_errorloc"></span>
 		</div>
 		<div class="formline">
 			<input type="submit" name="Submit" value="Submit"/>
 		</div>
+		<p class="fineprint">* required fields</p>
 	</form>
 	<script type="text/javascript">
 		// <![CDATA[
